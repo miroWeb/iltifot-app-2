@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FBF3EF;
+  color: #2B1B1F;
+}
+
+/* A restrained suzani-inspired border motif: repeating almond/leaf shapes,
+   used sparingly as a single hairline rule rather than an all-over pattern. */
+.suzani-rule {
+  height: 10px;
+  background-image: radial-gradient(circle at 6px 5px, #C9A227 2.2px, transparent 2.3px);
+  background-size: 16px 10px;
+  background-repeat: repeat-x;
+  opacity: 0.55;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid #6B2737;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
