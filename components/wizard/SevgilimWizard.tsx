@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabaseBrowser } from "@/lib/supabase";
+import { compressImage } from "@/lib/compressImage";
 import {
   SEVGILIM_THEMES,
   LETTER_TEMPLATES,
@@ -193,11 +194,18 @@ export default function SevgilimWizard() {
       let image_url: string | null = null;
       if (imageFile) {
         const supabase = supabaseBrowser();
-        const ext = imageFile.name.split(".").pop();
+        let blob: Blob = imageFile;
+        let ext = imageFile.name.split(".").pop() || "jpg";
+        try {
+          blob = await compressImage(imageFile);
+          ext = "jpg";
+        } catch {
+          // Siqib bo'lmasa, original faylni yuklaymiz
+        }
         const path = `${crypto.randomUUID()}.${ext}`;
         const { error: uploadError } = await supabase.storage
           .from("page-images")
-          .upload(path, imageFile);
+          .upload(path, blob, { contentType: blob.type || "image/jpeg" });
         if (uploadError) {
           setError("Rasm yuklanmadi: " + uploadError.message);
           setLoading(false);

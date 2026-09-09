@@ -27,13 +27,33 @@ export default function WipeReveal({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const w = container.clientWidth;
-    const h = container.clientHeight;
-    canvas.width = w;
-    canvas.height = h;
+    let w = 0;
+    let h = 0;
+    let wipedAny = false;
 
-    ctx.fillStyle = fogColor;
-    ctx.fillRect(0, 0, w, h);
+    function paintFog() {
+      canvas!.width = w;
+      canvas!.height = h;
+      ctx!.globalCompositeOperation = "source-over";
+      ctx!.fillStyle = fogColor;
+      ctx!.fillRect(0, 0, w, h);
+    }
+
+    // clientWidth/Height layout tugallanmasdan 0 qaytarishi mumkin (ayniqsa
+    // Instagram/Telegram ichki brauzerlarida) — shuning uchun o'lcham
+    // aniqlanguncha kuzatib turamiz.
+    const resizeObserver = new ResizeObserver((entries) => {
+      if (wipedAny) return;
+      const entry = entries[0];
+      const newW = Math.round(entry.contentRect.width);
+      const newH = Math.round(entry.contentRect.height);
+      if (newW > 0 && newH > 0 && (newW !== w || newH !== h)) {
+        w = newW;
+        h = newH;
+        paintFog();
+      }
+    });
+    resizeObserver.observe(container);
 
     function pos(e: PointerEvent) {
       const rect = canvas!.getBoundingClientRect();
@@ -69,6 +89,7 @@ export default function WipeReveal({
 
     function onDown(e: PointerEvent) {
       wiping.current = true;
+      wipedAny = true;
       const { x, y } = pos(e);
       wipeAt(x, y);
     }
@@ -87,6 +108,7 @@ export default function WipeReveal({
     canvas.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
     return () => {
+      resizeObserver.disconnect();
       canvas.removeEventListener("pointerdown", onDown);
       canvas.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);

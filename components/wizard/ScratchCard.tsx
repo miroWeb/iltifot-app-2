@@ -24,32 +24,55 @@ export default function ScratchCard({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const w = container.clientWidth;
-    const h = container.clientHeight;
-    canvas.width = w;
-    canvas.height = h;
+    let w = 0;
+    let h = 0;
 
-    ctx.fillStyle = "#6B2737";
-    ctx.fillRect(0, 0, w, h);
+    function paintOverlay() {
+      canvas!.width = w;
+      canvas!.height = h;
 
-    ctx.strokeStyle = "#C9A227";
-    ctx.lineWidth = 3;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    const cx = w / 2;
-    const cy = h / 2;
-    const s = Math.min(w, h) * 0.22;
-    ctx.strokeRect(cx - s, cy - s, s * 2, s * 2);
-    ctx.beginPath();
-    ctx.moveTo(cx - s, cy + s * 0.35);
-    ctx.lineTo(cx - s * 0.25, cy - s * 0.15);
-    ctx.lineTo(cx + s * 0.15, cy + s * 0.35);
-    ctx.lineTo(cx + s * 0.45, cy - s * 0.05);
-    ctx.lineTo(cx + s, cy + s * 0.35);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(cx + s * 0.45, cy - s * 0.45, s * 0.16, 0, Math.PI * 2);
-    ctx.stroke();
+      ctx!.globalCompositeOperation = "source-over";
+      ctx!.fillStyle = "#6B2737";
+      ctx!.fillRect(0, 0, w, h);
+
+      ctx!.strokeStyle = "#C9A227";
+      ctx!.lineWidth = 3;
+      ctx!.lineCap = "round";
+      ctx!.lineJoin = "round";
+      const cx = w / 2;
+      const cy = h / 2;
+      const s = Math.min(w, h) * 0.22;
+      ctx!.strokeRect(cx - s, cy - s, s * 2, s * 2);
+      ctx!.beginPath();
+      ctx!.moveTo(cx - s, cy + s * 0.35);
+      ctx!.lineTo(cx - s * 0.25, cy - s * 0.15);
+      ctx!.lineTo(cx + s * 0.15, cy + s * 0.35);
+      ctx!.lineTo(cx + s * 0.45, cy - s * 0.05);
+      ctx!.lineTo(cx + s, cy + s * 0.35);
+      ctx!.stroke();
+      ctx!.beginPath();
+      ctx!.arc(cx + s * 0.45, cy - s * 0.45, s * 0.16, 0, Math.PI * 2);
+      ctx!.stroke();
+    }
+
+    let scratchedAny = false;
+
+    // clientWidth/Height layout tugallanmasdan 0 qaytarishi mumkin (ayniqsa
+    // Instagram/Telegram ichki brauzerlarida) — shuning uchun o'lcham
+    // aniqlanguncha kuzatib turamiz va har o'zgarishda qayta chizamiz
+    // (foydalanuvchi qirishni boshlagach, taraqqiyotni yo'qotmaslik uchun to'xtatamiz).
+    const resizeObserver = new ResizeObserver((entries) => {
+      if (scratchedAny) return;
+      const entry = entries[0];
+      const newW = Math.round(entry.contentRect.width);
+      const newH = Math.round(entry.contentRect.height);
+      if (newW > 0 && newH > 0 && (newW !== w || newH !== h)) {
+        w = newW;
+        h = newH;
+        paintOverlay();
+      }
+    });
+    resizeObserver.observe(container);
 
     function pos(e: PointerEvent) {
       const rect = canvas!.getBoundingClientRect();
@@ -87,6 +110,7 @@ export default function ScratchCard({
 
     function onDown(e: PointerEvent) {
       scratching.current = true;
+      scratchedAny = true;
       const { x, y } = pos(e);
       scratchAt(x, y);
     }
@@ -105,6 +129,7 @@ export default function ScratchCard({
     canvas.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
     return () => {
+      resizeObserver.disconnect();
       canvas.removeEventListener("pointerdown", onDown);
       canvas.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
