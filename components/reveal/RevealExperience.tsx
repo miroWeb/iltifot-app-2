@@ -552,7 +552,7 @@ export default function RevealExperience({ page }: { page: PageRecord }) {
         ) && <GenericReveal page={page} />}
 
         <p className="mt-10 text-center text-xs text-ink/40">
-          Mehrim orqali yuborildi 💌
+          Iltifot orqali yuborildi 💌
         </p>
       </div>
     </main>

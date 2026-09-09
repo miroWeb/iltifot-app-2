@@ -16,7 +16,7 @@ export default function Nav() {
       <div className="flex items-center justify-between">
         <a href="/" className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-rose" />
-          <span className="font-display text-xl text-ink">Mehrim</span>
+          <span className="font-display text-xl text-ink">Iltifot</span>
         </a>
         <nav className="hidden items-center gap-8 text-sm text-ink/70 md:flex">
           {LINKS.map((l) => (

@@ -2,7 +2,7 @@ const freeFeatures = [
   "Asosiy dizayn andozalari",
   "Ism moslashtirish",
   "Standart matnlar",
-  "Mehrim markasi (watermark)",
+  "Iltifot markasi (watermark)",
 ];
 
 const premiumFeatures = [
@@ -11,7 +11,7 @@ const premiumFeatures = [
   "Maxsus interaktiv gullar",
   "Kechirim va shoshilinch xabarlar",
   "Hech qanday reklamalarsiz",
-  "Mehrim markasini o'chirish",
+  "Iltifot markasini o'chirish",
 ];
 
 function Check() {

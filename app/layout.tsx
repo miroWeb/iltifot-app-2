@@ -16,9 +16,9 @@ const body = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Mehrim — sizdan unga, bitta havola bilan",
+  title: "Iltifot — sizdan unga, bitta havola bilan",
   description:
-    "Sevganlaringizga maxsus tabriklar va sovg'alar yuboring. Mehrim orqali masofalar yaqinlashadi, qalblar birlashadi.",
+    "Sevganlaringizga maxsus tabriklar va sovg'alar yuboring. Iltifot orqali masofalar yaqinlashadi, qalblar birlashadi.",
 };
 
 export default function RootLayout({

@@ -18,7 +18,7 @@ export default function Hero() {
             bersin.
           </h1>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">
-            Sevganlaringizga maxsus tabriklar va sovg'alar yuboring. &ldquo;Mehrim&rdquo;
+            Sevganlaringizga maxsus tabriklar va sovg'alar yuboring. &ldquo;Iltifot&rdquo;
             orqali masofalar yaqinlashadi, qalblar birlashadi.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -39,90 +39,12 @@ export default function Hero() {
 
         <div className="relative">
           <div className="aspect-[4/3] w-full overflow-hidden rounded-[28px] bg-gradient-to-br from-cardRose via-cardPink to-cardPeach shadow-[0_40px_70px_-30px_rgba(201,123,134,0.45)]">
-            <svg viewBox="0 0 400 300" className="h-full w-full">
-              <defs>
-                <radialGradient id="hero-glow" cx="50%" cy="35%" r="65%">
-                  <stop offset="0%" stopColor="#FFF7F1" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="#FFF7F1" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-              <rect width="400" height="300" fill="url(#hero-glow)" />
-
-              {/* envelope with wax seal */}
-              <g transform="translate(120 150)">
-                <rect
-                  x="0"
-                  y="0"
-                  width="160"
-                  height="105"
-                  rx="6"
-                  fill="#F7EDE4"
-                  stroke="#D8B8A2"
-                  strokeWidth="1.5"
-                />
-                <path
-                  d="M0 4 L80 60 L160 4"
-                  fill="none"
-                  stroke="#D8B8A2"
-                  strokeWidth="1.5"
-                />
-                <circle cx="80" cy="52" r="14" fill="#C9A227" opacity="0.9" />
-                <circle cx="80" cy="52" r="6" fill="#F7EDE4" opacity="0.85" />
-              </g>
-
-              {/* candle */}
-              <g transform="translate(300 110)">
-                <rect x="-14" y="30" width="28" height="55" rx="4" fill="#E7B24F" />
-                <ellipse cx="0" cy="30" rx="14" ry="5" fill="#F3C877" />
-                <path
-                  d="M0 -6 Q6 6 0 16 Q-6 6 0 -6Z"
-                  fill="#F6A15E"
-                />
-                <path d="M0 4 Q3 10 0 16 Q-3 10 0 4Z" fill="#FCE0A6" />
-              </g>
-
-              {/* roses */}
-              {[
-                [60, 70, 26, "#E8607A"],
-                [95, 40, 20, "#F2879C"],
-                [220, 60, 22, "#C97B86"],
-                [330, 200, 24, "#E8607A"],
-                [50, 220, 22, "#F2879C"],
-                [255, 230, 18, "#B96872"],
-              ].map(([cx, cy, r, fill], i) => (
-                <g key={i} transform={`translate(${cx} ${cy})`}>
-                  {[0, 60, 120, 180, 240, 300].map((a) => (
-                    <ellipse
-                      key={a}
-                      cx="0"
-                      cy={-(r as number) * 0.55}
-                      rx={(r as number) * 0.4}
-                      ry={(r as number) * 0.6}
-                      fill={fill as string}
-                      opacity="0.85"
-                      transform={`rotate(${a})`}
-                    />
-                  ))}
-                  <circle r={(r as number) * 0.3} fill="#C9A227" opacity="0.9" />
-                </g>
-              ))}
-
-              {/* leaves */}
-              {[
-                [130, 30],
-                [280, 40],
-                [20, 150],
-                [370, 260],
-              ].map(([x, y], i) => (
-                <path
-                  key={i}
-                  d={`M${x} ${y} q10 -16 20 0 q-10 16 -20 0Z`}
-                  fill="#8CA678"
-                  opacity="0.7"
-                  transform={`rotate(${(i * 53) % 360} ${x} ${y})`}
-                />
-              ))}
-            </svg>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/Frame.png"
+              alt=""
+              className="h-full w-full object-cover"
+            />
           </div>
           <div className="absolute -bottom-6 -left-6 -z-10 h-full w-full rounded-[28px] bg-rose/15" />
         </div>

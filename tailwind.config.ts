@@ -4,6 +4,7 @@ const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
@@ -16,7 +17,7 @@ const config: Config = {
         coral2: "#F2879C",
         gold: "#C9A227",
         sand: "#EFE0D6",
-        // Mehrim marketing sayti palitrasi
+        // Iltifot marketing sayti palitrasi
         rose: "#C97B86",
         rose2: "#B96872",
         blush: "#FBEDEA",

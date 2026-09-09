@@ -6,7 +6,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-rose" />
-              <span className="font-display text-xl text-cream">Mehrim</span>
+              <span className="font-display text-xl text-cream">Iltifot</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed">
               Insonlarni yaqinlashtiradigan samimiy va interaktiv tabriklar
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-6 text-xs sm:flex-row">
-          <span>&copy; 2026 Mehrim. Barcha huquqlar himoyalangan.</span>
+          <span>&copy; 2026 Iltifot. Barcha huquqlar himoyalangan.</span>
           <div className="flex items-center gap-5">
             <a href="#" className="hover:text-cream">Telegram</a>
             <a href="#" className="hover:text-cream">Instagram</a>

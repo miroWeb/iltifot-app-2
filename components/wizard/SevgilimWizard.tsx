@@ -259,7 +259,7 @@ export default function SevgilimWizard() {
         </button>
         <a href="/" className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-rose" />
-          <span className="font-display text-lg text-ink">Mehrim</span>
+          <span className="font-display text-lg text-ink">Iltifot</span>
         </a>
         <span className="hidden rounded-full bg-rose/10 px-4 py-1.5 text-xs font-semibold text-rose sm:inline-block">
           {stepLabel}

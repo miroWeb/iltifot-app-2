@@ -29,7 +29,7 @@ export default function ShareResult({
   async function nativeShare() {
     if (navigator.share) {
       try {
-        await navigator.share({ title: "Mehrim", text: shareText, url });
+        await navigator.share({ title: "Iltifot", text: shareText, url });
       } catch {
         // foydalanuvchi ulashishni bekor qilgan bo'lishi mumkin — hech narsa qilmaymiz
       }
