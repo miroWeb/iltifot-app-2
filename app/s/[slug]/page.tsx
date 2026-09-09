@@ -1,8 +1,8 @@
-import { supabaseBrowser } from "@/lib/supabase";
-import { THEME_COPY, GRADIENT, type ThemeId, type ColorId } from "@/lib/content";
+import { supabaseBrowser, type PageRecord } from "@/lib/supabase";
 import { notFound } from "next/navigation";
+import RevealExperience from "@/components/reveal/RevealExperience";
 
-async function getPage(slug: string) {
+async function getPage(slug: string): Promise<PageRecord | null> {
   const supabase = supabaseBrowser();
   const { data } = await supabase
     .from("pages")
@@ -48,39 +48,5 @@ export default async function SurprisePage({
     );
   }
 
-  const copy = THEME_COPY[page.theme as ThemeId] ?? THEME_COPY.shunchaki;
-  const gradient = GRADIENT[page.color as ColorId] ?? GRADIENT.coral;
-
-  return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-center bg-gradient-to-br ${gradient} px-6 text-center`}
-    >
-      <p className="font-display text-sm italic text-cream/70">
-        {page.recipient_name}ga {copy.eyebrow}
-      </p>
-      <h1 className="mt-4 max-w-lg font-display text-3xl leading-tight text-cream md:text-5xl">
-        {copy.line1}
-        <br />
-        {copy.line2}
-      </h1>
-      {page.message && (
-        <p className="mt-6 max-w-md text-lg leading-relaxed text-cream/90">
-          {page.message}
-        </p>
-      )}
-      {page.image_url ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={page.image_url}
-          alt=""
-          className="mt-10 h-32 w-32 rounded-full object-cover ring-4 ring-cream/30"
-        />
-      ) : (
-        <div className="mt-10 flex h-28 w-28 items-center justify-center rounded-full bg-cream/15">
-          <div className="h-16 w-16 rounded-full bg-cream/30" />
-        </div>
-      )}
-      <p className="mt-10 text-xs text-cream/50">Iltifot orqali yuborildi</p>
-    </main>
-  );
+  return <RevealExperience page={page} />;
 }

@@ -189,7 +189,7 @@ export default function Themes() {
           {RECIPIENTS.map((r) => (
             <a
               key={r.id}
-              href={`/?kimga=${r.id}`}
+              href={r.id === "sevgilim" ? "/sevgilim" : "/"}
               className={`focus-ring group overflow-hidden rounded-2xl ${CARD_BG[r.id]} transition-transform hover:-translate-y-1`}
             >
               <div className="m-3 aspect-[4/3] overflow-hidden rounded-xl">

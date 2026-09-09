@@ -17,18 +17,27 @@ export function supabaseAdmin() {
   );
 }
 
-export type Theme = "uzr" | "taklif" | "tugilgan_kun" | "shunchaki";
+export type Theme =
+  | "uzr"
+  | "taklif"
+  | "tugilgan_kun"
+  | "minnatdorchilik"
+  | "sevgi_izhori"
+  | "shunchaki";
 export type Plan = "free" | "premium";
 
 export interface PageRecord {
   id: string;
   slug: string;
   recipient_name: string;
+  recipient: string;
   theme: Theme;
   color: string;
   message: string | null;
   image_url: string | null;
   plan: Plan;
+  response: string | null;
+  responded_at: string | null;
   created_at: string;
   expires_at: string | null;
 }

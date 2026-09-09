@@ -48,7 +48,7 @@ export default function Pricing() {
         </p>
 
         <div className="mt-12 grid gap-6 text-left sm:grid-cols-2">
-          <div className="rounded-3xl border border-ink/10 bg-white p-8">
+          <div className="rounded-3xl border border-ink/10 bg-white p-6 sm:p-8">
             <p className="font-display text-xl text-ink">Bepul</p>
             <p className="mt-1 text-sm text-ink/60">
               Do'stlar va oila a'zolari uchun oddiy tabriklar yuboring.
@@ -72,7 +72,7 @@ export default function Pricing() {
             </a>
           </div>
 
-          <div className="relative rounded-3xl border-2 border-rose bg-white p-8">
+          <div className="relative rounded-3xl border-2 border-rose bg-white p-6 sm:p-8">
             <span className="absolute right-6 top-6 rounded-full bg-rose/10 px-3 py-1 text-xs font-semibold text-rose">
               TAVSIYA ETILADI
             </span>

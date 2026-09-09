@@ -2,7 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
 import { generateSlug } from "@/lib/slug";
 
-const VALID_THEMES = ["uzr", "taklif", "tugilgan_kun", "minnatdorchilik", "shunchaki"];
+const VALID_THEMES = [
+  "uzr",
+  "taklif",
+  "tugilgan_kun",
+  "minnatdorchilik",
+  "sevgi_izhori",
+  "shunchaki",
+];
 const VALID_RECIPIENTS = [
   "sevgilim",
   "ona",
@@ -33,8 +40,8 @@ export async function POST(req: NextRequest) {
       { status: 400 }
     );
   }
-  // "Taklif qilish" mavzusi faqat "sevgilim" uchun mantiqiy.
-  if (theme === "taklif" && recipient !== "sevgilim") {
+  // "Taklif qilish" va "Sevgi izhori" mavzulari faqat "sevgilim" uchun mantiqiy.
+  if ((theme === "taklif" || theme === "sevgi_izhori") && recipient !== "sevgilim") {
     return NextResponse.json(
       { error: "Bu mavzu faqat sevgilim uchun mavjud" },
       { status: 400 }
