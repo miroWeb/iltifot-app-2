@@ -39,7 +39,7 @@ export type ThemeId = (typeof THEMES)[number]["id"];
 export const SEVGILIM_THEMES: {
   id: ThemeId;
   label: string;
-  icon: "heart" | "spark" | "heartFilled" | "star" | "cake";
+  icon: "heart" | "spark" | "heartFilled" | "star" | "cake" | "smile" | "flower";
   desc: string;
 }[] = [
   {
@@ -74,11 +74,52 @@ export const SEVGILIM_THEMES: {
   },
 ];
 
+// "Do'stim" uchun mavzu tanlash qadamida ko'rsatiladigan kartalar —
+// hozircha faqat ikkitasi tayyor. Belgilar do'stlikka mos (romantik emas).
+export const DOSTIM_THEMES: typeof SEVGILIM_THEMES = [
+  {
+    id: "shunchaki",
+    label: "Shunchaki",
+    icon: "smile",
+    desc: "Yaqin do'stingizga hech qanday sababsiz iliq bir tabassum ulashish uchun.",
+  },
+  {
+    id: "tugilgan_kun",
+    label: "Tug'ilgan kun",
+    icon: "cake",
+    desc: "Yaqin do'stingizning eng muhim kunida eng iliq istaklar va sovg'alar yuboring.",
+  },
+];
+
+// "Onam" uchun mavzu tanlash qadamida ko'rsatiladigan kartalar.
+export const ONA_THEMES: typeof SEVGILIM_THEMES = [
+  {
+    id: "shunchaki",
+    label: "Shunchaki",
+    icon: "heart",
+    desc: "Onangizga hech qanday sababsiz mehr-oqibat bildirish uchun.",
+  },
+  {
+    id: "minnatdorchilik",
+    label: "Minnatdorchilik",
+    icon: "flower",
+    desc: "Onangizning mehnati va sabri uchun chin dildan rahmat aytish maktubi.",
+  },
+  {
+    id: "tugilgan_kun",
+    label: "Tug'ilgan kun",
+    icon: "cake",
+    desc: "Onangizning eng muhim kunida eng iliq istaklar va sovg'alar yuboring.",
+  },
+];
+
 // Xat yozish qadamida matn maydoniga oldindan yoziladigan andoza matn
 // (foydalanuvchi buni tahrirlashi yoki o'chirib o'zinikini yozishi mumkin).
 export const LETTER_TEMPLATES: Partial<Record<ThemeId, string>> = {
   shunchaki:
     "Bugun senga alohida sababsiz shunchaki mehr ulashgim keldi. Har doim yonimda bo'lganing uchun rahmat. Kichkina bu xabar katta minnatdorchiligimni anglatsin.",
+  minnatdorchilik:
+    "Sen uchun qilgan mehnating va cheksiz sabring uchun so'zlar kamlik qiladi. Meni katta qilib, doim yonimda bo'lganing uchun cheksiz rahmat. Seni juda-juda yaxshi ko'raman.",
   uzr:
     "Bilaman, so'zlarim yoki harakatlarim seni ranjitgan bo'lishi mumkin. Ginalarni unutib, samimiy qalbdan uzr so'rayman. Munosabatimiz men uchun juda qadrli.",
   sevgi_izhori:

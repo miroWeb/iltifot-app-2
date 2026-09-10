@@ -1,5 +1,16 @@
 import { RECIPIENTS, CARD_BG, RecipientId } from "@/lib/content";
 
+const CARD_HREF: Record<RecipientId, string> = {
+  sevgilim: "/sevgilim",
+  dost: "/dostim",
+  ona: "/ona",
+  ota: "/ota",
+  aka: "/aka",
+  opa: "/opa",
+  uka: "/uka",
+  singil: "/singil",
+};
+
 const CARD_IMAGE: Record<RecipientId, string> = {
   sevgilim: "/sevgilim.png",
   ona: "/ona.png",
@@ -41,7 +52,7 @@ export default function Themes() {
           {RECIPIENTS.map((r) => (
             <a
               key={r.id}
-              href={r.id === "sevgilim" ? "/sevgilim" : "/"}
+              href={CARD_HREF[r.id] ?? "/"}
               className={`focus-ring group overflow-hidden rounded-2xl ${CARD_BG[r.id]} transition-transform hover:-translate-y-1`}
             >
               <div className="m-3 aspect-[4/3] overflow-hidden rounded-xl">

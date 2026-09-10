@@ -108,7 +108,14 @@ export function FloatingHearts({ count = 14 }: { count?: number }) {
   );
 }
 
-export type IconName = "heart" | "spark" | "heartFilled" | "star" | "cake";
+export type IconName =
+  | "heart"
+  | "spark"
+  | "heartFilled"
+  | "star"
+  | "cake"
+  | "smile"
+  | "flower";
 
 export function ThemeIcon({ icon }: { icon: IconName }) {
   const common = { viewBox: "0 0 24 24", className: "h-5 w-5" } as const;
@@ -144,6 +151,31 @@ export function ThemeIcon({ icon }: { icon: IconName }) {
           <path d="M2 21h20" />
           <path d="M12 12V7" />
           <path d="M12 4c-.9 0-1.6-.7-1.6-1.6S12 1 12 1s1.6.6 1.6 1.4S12.9 4 12 4Z" />
+        </svg>
+      );
+    case "smile":
+      return (
+        <svg {...common} fill="none" stroke="currentColor" strokeWidth="1.8">
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none" />
+          <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none" />
+          <path d="M8 14.2c1.1 1.5 2.5 2.3 4 2.3s2.9-.8 4-2.3" strokeLinecap="round" />
+        </svg>
+      );
+    case "flower":
+      return (
+        <svg {...common} fill="currentColor">
+          {[0, 72, 144, 216, 288].map((a) => (
+            <ellipse
+              key={a}
+              cx="12"
+              cy="7.2"
+              rx="3.4"
+              ry="5.2"
+              transform={`rotate(${a} 12 12)`}
+            />
+          ))}
+          <circle cx="12" cy="12" r="2.4" fill="#fff" opacity="0.9" />
         </svg>
       );
   }

@@ -19,6 +19,21 @@ import { GRADIENT, THEME_COPY, type ThemeId, type ColorId } from "@/lib/content"
 const HEART_CLIP_PATH =
   "M0.5,0.95 C0.5,0.95 0.05,0.6 0.05,0.35 C0.05,0.15 0.2,0.02 0.38,0.02 C0.46,0.02 0.5,0.08 0.5,0.12 C0.5,0.08 0.54,0.02 0.62,0.02 C0.8,0.02 0.95,0.15 0.95,0.35 C0.95,0.6 0.5,0.95 0.5,0.95 Z";
 
+const SALUTATION: Record<string, string> = {
+  sevgilim: "Azizim",
+  dost: "Do'stim",
+  ona: "Onajonim",
+  ota: "Dadajonim",
+  aka: "Akajonim",
+  opa: "Opajonim",
+  uka: "Ukajonim",
+  singil: "Singlim",
+};
+
+function salutationFor(recipient: string): string {
+  return SALUTATION[recipient] ?? "Salom";
+}
+
 function useRespond(slug: string) {
   const [submitting, setSubmitting] = useState(false);
   async function respond(value: string): Promise<string> {
@@ -69,7 +84,7 @@ function ShunchakiReveal({ page }: { page: PageRecord }) {
   return (
     <div className="w-full max-w-md rounded-3xl bg-white p-6 text-center shadow-[0_30px_60px_-25px_rgba(201,123,134,0.35)] sm:p-8">
       <p className="font-display text-xl italic text-rose">
-        Azizim, {page.recipient_name}
+        {salutationFor(page.recipient)}, {page.recipient_name}
       </p>
       {page.message && (
         <p className="mt-4 whitespace-pre-line font-display text-lg italic leading-relaxed text-ink/80">
@@ -102,7 +117,7 @@ function BirthdayReveal({ page }: { page: PageRecord }) {
       <div className="flex w-full max-w-md flex-col items-center text-center">
         <div className="w-full rounded-3xl bg-white p-6 shadow-[0_30px_60px_-25px_rgba(201,123,134,0.35)] sm:p-8">
           <p className="font-display text-xl italic text-rose">
-            Azizim, {page.recipient_name}! 🎂
+            {salutationFor(page.recipient)}, {page.recipient_name}! 🎂
           </p>
           <div className="my-4 flex justify-center text-4xl">🎁</div>
           {page.message && (
